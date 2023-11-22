@@ -1,0 +1,53 @@
+- Date :	15 May 2023, 20:29:08
+
+- Path :	/network/lustre/iss02/aramis/projects/ihi/IMAGEN/DataBase_IMAGEN/results/Conv5_FC3/MAPS_hipp_C2_L_OneFold
+
+- Model :	Sequential(
+  (0): Sequential(
+    (0): Conv3d(1, 8, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+    (1): BatchNorm3d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): PadMaxPool3d(
+      (pool): MaxPool3d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (pad): ConstantPad3d(padding=(1, 0, 1, 0, 1, 0), value=0)
+    )
+    (4): Conv3d(8, 16, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+    (5): BatchNorm3d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): PadMaxPool3d(
+      (pool): MaxPool3d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (pad): ConstantPad3d(padding=(1, 0, 1, 0, 1, 0), value=0)
+    )
+    (8): Conv3d(16, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+    (9): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): PadMaxPool3d(
+      (pool): MaxPool3d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (pad): ConstantPad3d(padding=(1, 0, 1, 0, 1, 0), value=0)
+    )
+    (12): Conv3d(32, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+    (13): BatchNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (14): ReLU()
+    (15): PadMaxPool3d(
+      (pool): MaxPool3d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (pad): ConstantPad3d(padding=(0, 0, 1, 0, 0, 0), value=0)
+    )
+    (16): Conv3d(64, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1))
+    (17): BatchNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (18): ReLU()
+    (19): PadMaxPool3d(
+      (pool): MaxPool3d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+      (pad): ConstantPad3d(padding=(0, 0, 0, 0, 0, 0), value=0)
+    )
+  )
+  (1): Sequential(
+    (0): Flatten(start_dim=1, end_dim=-1)
+    (1): Dropout(p=0.0, inplace=False)
+    (2): Linear(in_features=10240, out_features=1300, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=1300, out_features=50, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=50, out_features=1, bias=True)
+  )
+)
+

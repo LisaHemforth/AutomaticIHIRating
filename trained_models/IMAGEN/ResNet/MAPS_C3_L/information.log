@@ -1,0 +1,86 @@
+- Date :	16 May 2023, 00:58:56
+
+- Path :	/network/lustre/iss02/aramis/projects/ihi/IMAGEN/DataBase_IMAGEN/results/ResNet/MAPS_hipp_C3_L_OneFold
+
+- Model :	Sequential(
+  (0): Sequential(
+    (0): Sequential(
+      (0): ResBlock(
+        (conv1): Conv3d(1, 8, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn1): BatchNorm3d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act1): ELU(alpha=1.0)
+        (conv2): Conv3d(8, 8, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn2): BatchNorm3d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv3d(1, 8, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        )
+        (act2): ELU(alpha=1.0)
+      )
+      (1): MaxPool3d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (1): Sequential(
+      (0): ResBlock(
+        (conv1): Conv3d(8, 16, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn1): BatchNorm3d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act1): ELU(alpha=1.0)
+        (conv2): Conv3d(16, 16, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn2): BatchNorm3d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv3d(8, 16, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        )
+        (act2): ELU(alpha=1.0)
+      )
+      (1): MaxPool3d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (2): Sequential(
+      (0): ResBlock(
+        (conv1): Conv3d(16, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn1): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act1): ELU(alpha=1.0)
+        (conv2): Conv3d(32, 32, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn2): BatchNorm3d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv3d(16, 32, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        )
+        (act2): ELU(alpha=1.0)
+      )
+      (1): MaxPool3d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (3): Sequential(
+      (0): ResBlock(
+        (conv1): Conv3d(32, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn1): BatchNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act1): ELU(alpha=1.0)
+        (conv2): Conv3d(64, 64, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn2): BatchNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv3d(32, 64, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        )
+        (act2): ELU(alpha=1.0)
+      )
+      (1): MaxPool3d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+    (4): Sequential(
+      (0): ResBlock(
+        (conv1): Conv3d(64, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn1): BatchNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act1): ELU(alpha=1.0)
+        (conv2): Conv3d(128, 128, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=(1, 1, 1), bias=False)
+        (bn2): BatchNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (shortcut): Sequential(
+          (0): Conv3d(64, 128, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+        )
+        (act2): ELU(alpha=1.0)
+      )
+      (1): MaxPool3d(kernel_size=3, stride=2, padding=0, dilation=1, ceil_mode=False)
+    )
+  )
+  (1): Sequential(
+    (0): Flatten()
+    (1): Linear(in_features=1536, out_features=256, bias=True)
+    (2): ELU(alpha=1.0)
+    (3): Dropout(p=0.5, inplace=False)
+    (4): Linear(in_features=256, out_features=1, bias=True)
+  )
+)
+
