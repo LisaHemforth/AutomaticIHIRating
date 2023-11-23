@@ -1,7 +1,7 @@
 Automatic IHI Rating
 ====================
 
-# Abstratct 
+# Abstract 
 Incomplete Hippocampal Inversion (IHI), sometimes called hippocampal malrotation, is an atypical anatomical pattern of the hippocampus found in about 20\% of the general population.  IHI can be visually assessed on coronal slices of T1 weighted MR images, using a composite score that combines four anatomical criteria.
 IHI has been associated with several brain disorders (epilepsy, schizophrenia). However, these studies were based on small samples. Furthermore, the factors (genetic or environmental) that contribute to the genesis of IHI are largely unknown. Large-scale studies are thus needed to further understand IHI and their potential relationships to neurological and psychiatric disorders.
 However, visual evaluation is long and tedious, justifying the need for an automatic method.  
@@ -39,7 +39,7 @@ The respository is structured as follows:
     ├── prediction
 ```
 
-The data for this study can unfortunately not be made accessible. However, the pre-rained models are available in the `trained_models` folder. The models were trained with clinicaDL (https://clinicadl.readthedocs.io/en/latest/Train/Introduction/). Users should hence get familiar with this training strategy. Trained models can be found in the subfolders corresponding to training_mehtods (`IMAGEN`, `IMAGEN_QTIM_QTAB`,`IMAGEN_QTIM_QTAB_UKB`)  and model (`CNN`, `ResNet`, `SECNN`). We advise using the "conv5-FC3" trained on the IMAGEN, QTIM and QTAB data-sets. While we cannot disclose individual results, the figures of the paper showing the summarry statistics obtained with each model can be found in the `results` folder. The scripts to predict further results can be found in the `scripts` folder along with the pre-processing pipeline. 
+The data for this study can unfortunately not be made accessible. However, the pre-rained models are available in the `trained_models` folder. The models were trained with clinicaDL (https://clinicadl.readthedocs.io/en/latest/Train/Introduction/). Users should hence get familiar with this training strategy. Trained models can be found in the subfolders corresponding to training_methods (`IMAGEN`, `IMAGEN_QTIM_QTAB`,`IMAGEN_QTIM_QTAB_UKB`)  and model (`CNN`, `ResNet`, `SECNN`). We advise using the "conv5-FC3" trained on the IMAGEN, QTIM and QTAB data-sets. While we cannot disclose individual results, the figures of the paper showing the summarry statistics obtained with each model can be found in the `results` folder. The scripts to predict further results can be found in the `scripts` folder along with the pre-processing pipeline. 
 
 # Requirements
 - Python >= 3.6
