@@ -41,6 +41,33 @@ The respository is structured as follows:
 
 The data for this study can unfortunately not be made accessible. However, the pre-rained models are available in the `trained_models` folder. The models were trained with clinicaDL (https://clinicadl.readthedocs.io/en/latest/Train/Introduction/). Users should hence get familiar with this training strategy. Trained models can be found in the subfolders corresponding to training_methods (`IMAGEN`, `IMAGEN_QTIM_QTAB`,`IMAGEN_QTIM_QTAB_UKB`)  and model (`CNN`, `ResNet`, `SECNN`). We advise using the "conv5-FC3" trained on the IMAGEN, QTIM and QTAB data-sets. While we cannot disclose individual results, the figures of the paper showing the summarry statistics obtained with each model can be found in the `results` folder. The scripts to predict further results can be found in the `scripts` folder along with the pre-processing pipeline. 
 
+# Usage
+First, you will need to install clinica and clinicadl.
+```
+pip install clinica
+pip install clinicadl
+```
+Now check that your clinicadl version is at least 1.1.0
+```
+clinicadl --version
+```
+You can then use the clinica T1-volume pipeline for pre-processing. Make sure that your data is in bids format. Indicate the CAPS directory where you want to store your processed data as well as a tsv file containing the rows 'participant_id' and 'session_id' indicating which participants and sessions to process. 
+```
+clinica run t1-volume BIDS_DIRECTORY CAPS_DIRECTORY GROUP_LABEL -tsv TSV_FILE
+```
+You then extract tensors from the greymatter maps which will be used for prediction using the previously defined ROI mask. The file for this mask can be found in the pre-processing directory. We use a cutsom suffix to ensure the use of greymatter maps for tensor extraction. 
+```
+clinicadl extract roi CAPS_DIRECTORY custom --custom_suffix normalized_space/*graymatter_space-Ixi549Space_modulated-off_probability.nii.gz --roi_custom_template MNI152NLin2009cSym --roi_list hippvol --subjects_sessions_tsv TSV_FILE --save_features --extract_json hippGM.json  --roi_uncrop_output
+```
+You can now start the predicition using our models. Download the trained_models folder and choose which model you want to apply to your data. We recommend using the Conv5-FC3 trained on IMAGEN,QTIM,QTAB. You can then launch the prediction using the following command. Criteria can either be predicted indivually or the composite score can be predicted directly. In the former case, predicted results will then need to be added together to obtain the full IHI score. The INPUT_MAPS DIRECTORY needs to be a path to the pretrained models MAPS (ex: trained_models/IMAGEN_QTIM_QTAB/Conv5-FC3/MAPS_C1_L). Define you data group name to recognise your predictions later on. 
+```
+for crit in C1_L C1_R C2_L C2_R C3_L C3_R C5_L C5_R SCi_L SCi_R
+do
+    clinicadl predict MAPS_DIRECTORY_${crit} DATA_GROUP --caps_directory CAPS_DIRECTORY --participants_tsv TSV_FILE --label ${crit} --overwrite
+done
+```
+You should now see your results in the MAPS_DIRECTORY as MAPS_DIRECTORY/split-0/best-loss/DATA_GROUP/DATA_GROUP_roi_level_predictions.tsv
+
 # Requirements
 - Python >= 3.6
 - [ClinicaDL](https://clinicadl.readthedocs.io/en/latest/Train/Introduction/)
