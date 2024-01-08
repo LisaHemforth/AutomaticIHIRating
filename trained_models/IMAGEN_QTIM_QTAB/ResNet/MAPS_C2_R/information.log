@@ -1,6 +1,6 @@
-- Date :	09 Feb 2023, 14:11:27
+- Date :	11 Dec 2023, 01:31:56
 
-- Path :	/network/lustre/iss02/aramis/projects/ihi/IMAGEN/DataBase_IMAGEN/results/ResNet/MAPS_hipp_C2_R_MULTI
+- Path :	/network/lustre/iss02/aramis/projects/ihi/IMAGEN/DataBase_IMAGEN/results/ResNet/MAPS_hipp_C2_R_MULTI_dart
 
 - Model :	Sequential(
   (0): Sequential(

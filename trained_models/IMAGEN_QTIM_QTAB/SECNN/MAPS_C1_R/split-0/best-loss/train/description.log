@@ -1,4 +1,0 @@
-Prediction train group - 2023-02-09 10:16:17.607823
-Data loaded from CAPS directories: {'IMAGEN': '/network/lustre/iss02/aramis/projects/ihi/IMAGEN/DataBase_IMAGEN/ALEX/caps_v2021', 'QTIM': '/network/lustre/iss02/aramis/datasets/qtim/caps/caps_IMAGEN', 'QTAB': '/network/lustre/iss02/aramis/datasets/qtab/caps/caps_IMAGEN'}
-Number of participants: 1939
-Number of sessions: 2041
