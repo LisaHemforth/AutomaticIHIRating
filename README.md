@@ -53,7 +53,7 @@ clinicadl --version
 ```
 You can then use the clinica T1-volume pipeline for pre-processing. Make sure that your data is in bids format. Indicate the CAPS directory where you want to store your processed data as well as a tsv file containing the rows 'participant_id' and 'session_id' indicating which participants and sessions to process. 
 ```
-clinica run t1-volume BIDS_DIRECTORY CAPS_DIRECTORY GROUP_LABEL -tsv TSV_FILE
+clinica run t1-volume-tissue-segmentation BIDS_DIRECTORY CAPS_DIRECTORY -tsv TSV_FILE -wd WORKIN_DIRECTORY
 ```
 You then extract tensors from the greymatter maps which will be used for prediction using the previously defined ROI mask. The file for this mask can be found in the pre-processing directory. We use a cutsom suffix to ensure the use of greymatter maps for tensor extraction. 
 ```
