@@ -55,7 +55,7 @@ You can then use the clinica T1-volume pipeline for pre-processing. Make sure th
 ```
 clinica run t1-volume-tissue-segmentation BIDS_DIRECTORY CAPS_DIRECTORY -tsv TSV_FILE -wd WORKIN_DIRECTORY
 ```
-You then extract tensors from the greymatter maps which will be used for prediction using the previously defined ROI mask. The file for this mask can be found in the pre-processing directory. We use a cutsom suffix to ensure the use of greymatter maps for tensor extraction. 
+You then extract tensors from the greymatter maps which will be used for prediction using the previously defined ROI mask. The file for this mask can be found in the pre-processing directory. Make sure to copy this file into CAPS_DIRECTORY/masks/tpl-MNI152NLin2009cSym. We use a cutsom suffix to ensure the use of greymatter maps for tensor extraction. 
 ```
 clinicadl extract roi CAPS_DIRECTORY custom --custom_suffix normalized_space/*graymatter_space-Ixi549Space_modulated-off_probability.nii.gz --roi_custom_template MNI152NLin2009cSym --roi_list hippvol --subjects_sessions_tsv TSV_FILE --save_features --extract_json hippGM.json  --roi_uncrop_output
 ```
