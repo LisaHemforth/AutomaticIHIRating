@@ -45,7 +45,7 @@ The data for this study can unfortunately not be made accessible. However, the p
 First, you will need to install clinica and clinicadl.
 ```
 pip install clinica
-pip install clinicadl
+pip install clinicadl==1.1.1
 ```
 Now check that your clinicadl version is at least 1.1.0
 ```
@@ -69,6 +69,6 @@ done
 You should now see your results in the MAPS_DIRECTORY as MAPS_DIRECTORY/split-0/best-loss/DATA_GROUP/DATA_GROUP_roi_level_predictions.tsv
 
 # Requirements
-- Python >= 3.6
+- Python >= 3.8
 - [ClinicaDL](https://clinicadl.readthedocs.io/en/latest/Train/Introduction/)
 - [Clinica](https://aramislab.paris.inria.fr/clinica/docs/public/latest/)
