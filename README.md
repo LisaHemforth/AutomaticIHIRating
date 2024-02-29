@@ -51,7 +51,7 @@ Now check that your clinicadl version is at least 1.1.0
 ```
 clinicadl --version
 ```
-You can then use the clinica T1-volume pipeline for pre-processing. Make sure that your data is in bids format. Indicate the CAPS directory where you want to store your processed data as well as a tsv file containing the rows 'participant_id' and 'session_id' indicating which participants and sessions to process. 
+You can then use the clinica T1-volume pipeline for pre-processing. Make sure that your data is in bids format. Indicate the CAPS directory where you want to store your processed data as well as a tsv file containing the column 'participant_id' and 'session_id' indicating which participants and sessions to process, as well as a column 'diagnosis' with the word 'train' on every row. This last column should not be necessary anymore in the future updates. 
 ```
 clinica run t1-volume-tissue-segmentation BIDS_DIRECTORY CAPS_DIRECTORY -tsv TSV_FILE -wd WORKIN_DIRECTORY
 ```
