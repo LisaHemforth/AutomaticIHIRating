@@ -45,25 +45,25 @@ The data for this study can unfortunately not be made accessible. However, the p
 First, you will need to install clinica and clinicadl.
 ```
 pip install clinica
-pip install clinicadl
+pip install clinicadl==1.1.1
 ```
 Now check that your clinicadl version is at least 1.1.0
 ```
 clinicadl --version
 ```
-You can then use the clinica T1-volume pipeline for pre-processing. Make sure that your data is in bids format. Indicate the CAPS directory where you want to store your processed data as well as a tsv file containing the rows 'participant_id' and 'session_id' indicating which participants and sessions to process. 
+You can then use the clinica T1-volume pipeline for pre-processing. Make sure that your data is in bids format. Indicate the CAPS directory where you want to store your processed data as well as a tsv file containing the column 'participant_id' and 'session_id' indicating which participants and sessions to process, as well as a column 'diagnosis' with the word 'train' on every row. This last column should not be necessary anymore in the future updates. 
 ```
-clinica run t1-volume BIDS_DIRECTORY CAPS_DIRECTORY GROUP_LABEL -tsv TSV_FILE
+clinica run t1-volume-tissue-segmentation BIDS_DIRECTORY CAPS_DIRECTORY -tsv TSV_FILE -wd WORKIN_DIRECTORY
 ```
-You then extract tensors from the greymatter maps which will be used for prediction using the previously defined ROI mask. The file for this mask can be found in the pre-processing directory and should be added in CAPS_DIRECTORY/masks/tpl-MNI152NLin2009cSym/tpl-MNI152NLin2009cSym_desc-Crop_res-1x1x1_roi-hippvol_mask.nii.gz. We use a cutsom suffix to ensure the use of greymatter maps for tensor extraction. 
+You then extract tensors from the greymatter maps which will be used for prediction using the previously defined ROI mask. The file for this mask can be found in the pre-processing directory. Make sure to copy this file into CAPS_DIRECTORY/masks/tpl-MNI152NLin2009cSym. We use a cutsom suffix to ensure the use of greymatter maps for tensor extraction. 
 ```
-clinicadl extract roi CAPS_DIRECTORY custom --custom_suffix  dartel/group-IMAGEN/*_T1w_segm-graymatter_space-Ixi549Space_modulated-on_probability.nii.gz --roi_custom_template MNI152NLin2009cSym --roi_list hippvol --subjects_sessions_tsv TSV_FILE --save_features --extract_json extract.json  --roi_uncrop_output
+clinicadl extract roi CAPS_DIRECTORY custom --custom_suffix normalized_space/*graymatter_space-Ixi549Space_modulated-off_probability.nii.gz --roi_custom_template MNI152NLin2009cSym --roi_list hippvol --subjects_sessions_tsv TSV_FILE --save_features --extract_json hippGM.json  --roi_uncrop_output
 ```
 You can now start the predicition using our models. Download the trained_models folder and choose which model you want to apply to your data. We recommend using the Conv5-FC3 trained on IMAGEN,QTIM,QTAB. You can then launch the prediction using the following command. Criteria can either be predicted indivually or the composite score can be predicted directly. In the former case, predicted results will then need to be added together to obtain the full IHI score. The INPUT_MAPS DIRECTORY needs to be a path to the pretrained models MAPS (ex: trained_models/IMAGEN_QTIM_QTAB/Conv5-FC3/MAPS_C1_L). Define you data group name to recognise your predictions later on. 
 ```
 for crit in C1_L C1_R C2_L C2_R C3_L C3_R C5_L C5_R SCi_L SCi_R
 do
-    clinicadl predict MAPS_DIRECTORY_${crit} DATA_GROUP --caps_directory CAPS_DIRECTORY --participants_tsv TSV_FILE --label ${crit} --overwrite
+    clinicadl predict MAPS_DIRECTORY_${crit} DATA_GROUP --caps_directory CAPS_DIRECTORY --participants_tsv TSV_FILE --no_labels --overwrite
 done
 ```
 You should now see your results in the MAPS_DIRECTORY as MAPS_DIRECTORY/split-0/best-loss/DATA_GROUP/DATA_GROUP_roi_level_predictions.tsv
