@@ -62,9 +62,9 @@ pip install clinicadl==1.1.1
 ```
 Or simply create an environment with the IHIrating.yml file found in scripts. This method will only work if you are operating under Linux.
 ```
-conda activate IHIRating
 cd scripts
 conda env create -f IHIRating.yml
+conda activate IHIRating
 ```
 Check that your clinicadl version is 1.1.1
 ```
