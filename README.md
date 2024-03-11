@@ -42,17 +42,31 @@ The respository is structured as follows:
 The data for this study can unfortunately not be made accessible. However, the pre-rained models are available in the `trained_models` folder. The models were trained with clinicaDL (https://clinicadl.readthedocs.io/en/latest/Train/Introduction/). Users should hence get familiar with this training strategy. Trained models can be found in the subfolders corresponding to training_methods (`IMAGEN`, `IMAGEN_QTIM_QTAB`,`IMAGEN_QTIM_QTAB_UKB`)  and model (`CNN`, `ResNet`, `SECNN`). We advise using the "conv5-FC3" trained on the IMAGEN, QTIM and QTAB data-sets. While we cannot disclose individual results, the figures of the paper showing the summarry statistics obtained with each model can be found in the `results` folder. The scripts to predict further results can be found in the `scripts` folder along with the pre-processing pipeline. 
 
 # Usage
-First, you will need to install clinica and clinicadl.
+Fork this github directory and ensure you are connect to your own github through ssh using this tutorial : https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac
+You can now clone the repository. Another option is to simply download the zip file.
 ```
+git clone git@github.com:Linktoyourgithub
+```
+If you want to create your own environment or are not operating under linux:
+```
+#Linux
+conda env create -n IHIRating python==3.9
+#Apple
+conda create --name IHIRating python==3.9
+```
+Then install clinica and clinicadl:
+```
+conda activate IHIRating
 pip install clinica
 pip install clinicadl==1.1.1
 ```
-Or simply create an envronment with the IHIrating.yml file found in scripts. 
+Or simply create an environment with the IHIrating.yml file found in scripts. This method will only work if you are operating under Linux.
 ```
-conda create IHIrating.yml
+conda activate IHIRating
+cd scripts
+conda env create -f IHIRating.yml
 ```
-
-Now check that your clinicadl version is 1.1.1
+Check that your clinicadl version is 1.1.1
 ```
 clinicadl --version
 ```
