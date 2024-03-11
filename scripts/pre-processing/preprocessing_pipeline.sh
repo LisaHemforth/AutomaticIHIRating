@@ -1,6 +1,6 @@
 # The following scripts outlines the preprocessing steps for images to be used for automatic IHI prediction.
-# The first step is to use the clinica T1-volume processing step. Make sure your data is in the BIDS format. 
-clinica run t1-volumee BIDS_DIRECTORY CAPS_DIRECTORY GROUP_LABEL -tsv TSV_FILE -wd WORKIN_DIRECTORY
+# The first step is to use the first step of the clinica T1-volume processing. Make sure your data is in the BIDS format. 
+clinica run t1-volume-tissue-segmentation BIDS_DIRECTORY CAPS_DIRECTORY -tsv TSV_FILE -wd WORKIN_DIRECTORY
 
 # We then extract the tensors from the greymatter maps which will be used for prediction using the previously defined ROI mask. The file for this mask can be found in this directory. This file should be added to your caps directory as CAPS_DIRECTORY/masks/tpl-MNI152NLin2009cSym/tpl-MNI152NLin2009cSym_desc-Crop_res-1x1x1_roi-hippvol_mask.nii.gz
 clinicadl extract roi CAPS_DIRECTORY custom --custom_suffix dartel/group-IMAGEN/*_T1w_segm-graymatter_space-Ixi549Space_modulated-on_probability.nii.gz --roi_custom_template MNI152NLin2009cSym --roi_custom_template MNI152NLin2009cSym --roi_list hippvol --subjects_sessions_tsv TSV_FILE --save_features --extract_json extract.json  --roi_uncrop_output
