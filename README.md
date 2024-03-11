@@ -47,7 +47,12 @@ First, you will need to install clinica and clinicadl.
 pip install clinica
 pip install clinicadl==1.1.1
 ```
-Now check that your clinicadl version is at least 1.1.0
+Or simply create an envronment with the IHIrating.yml file found in scripts. 
+```
+conda create IHIrating.yml
+```
+
+Now check that your clinicadl version is 1.1.1
 ```
 clinicadl --version
 ```
