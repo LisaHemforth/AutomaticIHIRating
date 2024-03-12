@@ -1,6 +1,6 @@
-- Date :	19 Dec 2023, 10:55:13
+- Date :	21 Mar 2023, 12:32:35
 
-- Path :	/network/lustre/iss02/aramis/projects/ihi/IMAGEN/DataBase_IMAGEN/results/SECNN3D/MAPS_hipp_C1_L_MULTI_ALL_dart
+- Path :	/network/lustre/iss02/aramis/projects/ihi/IMAGEN/DataBase_IMAGEN/results/SECNN3D/MAPS_hipp_C1_L_MULTI_reg_train_UKB
 
 - Model :	Sequential(
   (0): Sequential(

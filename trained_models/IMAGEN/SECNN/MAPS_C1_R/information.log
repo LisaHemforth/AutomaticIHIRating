@@ -1,6 +1,6 @@
-- Date :	10 Dec 2023, 13:22:12
+- Date :	15 May 2023, 18:00:33
 
-- Path :	/network/lustre/iss02/aramis/projects/ihi/IMAGEN/DataBase_IMAGEN/results/SECNN3D/MAPS_hipp_C1_R_OneFold_dart
+- Path :	/network/lustre/iss02/aramis/projects/ihi/IMAGEN/DataBase_IMAGEN/results/SECNN3D/MAPS_hipp_C1_R_OneFold
 
 - Model :	Sequential(
   (0): Sequential(

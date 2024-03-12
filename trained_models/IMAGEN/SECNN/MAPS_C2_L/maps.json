@@ -47,8 +47,8 @@
         "mode": "roi",
         "use_uncropped_image": null,
         "prepare_dl": true,
-        "custom_suffix": "dartel/group-IMAGEN/*_T1w_segm-graymatter_space-Ixi549Space_modulated-on_probability.nii.gz",
-        "extract_json": "hippGM_dartel.json",
+        "custom_suffix": "*/segmentation/normalized_space/*graymatter_space-Ixi549Space_modulated-off_probability.nii.gz",
+        "extract_json": "hippGM.json",
         "roi_list": [
             "hippvol"
         ],
@@ -56,7 +56,7 @@
         "roi_custom_template": "MNI152NLin2009cSym",
         "roi_custom_mask_pattern": "",
         "file_type": {
-            "pattern": "*dartel/group-IMAGEN/*_T1w_segm-graymatter_space-Ixi549Space_modulated-on_probability.nii.gz",
+            "pattern": "*T1w_space-MNI152NLin2009cSym_desc-CropImage_res-1x1x1_roi-hippvol_probability.pt",
             "description": "Custom suffix"
         },
         "roi_background_value": 0
