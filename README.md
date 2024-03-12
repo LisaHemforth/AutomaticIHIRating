@@ -52,7 +52,7 @@ If you want to create your own environment or are not operating under linux:
 #Linux
 conda env create -n IHIRating python==3.9
 #Apple
-conda create --name IHIRating python==3.9
+conda create --name IHIRating python==3.9 -c conda-forge
 ```
 Then install clinica and clinicadl:
 ```
@@ -70,9 +70,25 @@ Check that your clinicadl version is 1.1.1
 ```
 clinicadl --version
 ```
+Clinica also requires spm. If you already have SPM standalone or SPM and matlab you can skip this step. SPM is based on MATLAB, however, a standalone version is available which only requires MATLAB runtime (download the 2022a version here and follow the installer https://fr.mathworks.com/products/compiler/matlab-runtime.html). If you are using linux: 
+```
+cd /path/to/your/Matlab_runntime
+unzip MATLAB_Runtime_R2022a_Update_7_glnxa64.zip
+cd MATLAB_Runtime_R2022a_Update_7_glnxa64
+chmod 755 install
+./install
+```
+Install MATLAB in your home/MATLAB directory. You can download spm standalone at the following link (please ensure to use the 2022a version) : https://fr.mathworks.com/products/compiler/matlab-runtime.html . Unzip your file. You can check that spm works using the following command.
+```
+cd path/to/your/spm
+./run_spm12.sh /home/MATLAB/v912
+export SPMSTANDALONE_HOME=/path/to/your/spm
+export MCR_HOME=/home/MATLAB/v912
+```
+If your already have SPM and MATLAB set the SPM_HOME to your SPM folder.
 You can then use the clinica T1-volume pipeline for pre-processing. Make sure that your data is in bids format. Indicate the CAPS directory where you want to store your processed data as well as a tsv file containing the column 'participant_id' and 'session_id' indicating which participants and sessions to process, as well as a column 'diagnosis' with the word 'train' on every row. This last column should not be necessary anymore in the future updates. 
 ```
-clinica run t1-volume-tissue-segmentation BIDS_DIRECTORY CAPS_DIRECTORY -tsv TSV_FILE -wd WORKIN_DIRECTORY
+clinica run t1-volume-tissue-segmentation BIDS_DIRECTORY CAPS_DIRECTORY -tsv TSV_FILE
 ```
 You then extract tensors from the greymatter maps which will be used for prediction using the previously defined ROI mask. The file for this mask can be found in the pre-processing directory. Make sure to copy this file into CAPS_DIRECTORY/masks/tpl-MNI152NLin2009cSym. We use a cutsom suffix to ensure the use of greymatter maps for tensor extraction. 
 ```
@@ -91,3 +107,5 @@ You should now see your results in the MAPS_DIRECTORY as MAPS_DIRECTORY/split-0/
 - Python >= 3.8
 - [ClinicaDL](https://clinicadl.readthedocs.io/en/latest/Train/Introduction/)
 - [Clinica](https://aramislab.paris.inria.fr/clinica/docs/public/latest/)
+- SPM
+- MATLAB runntime
