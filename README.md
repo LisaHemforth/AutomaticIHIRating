@@ -98,7 +98,7 @@ You can now start the predicition using our models. Download the trained_models 
 ```
 for crit in C1_L C1_R C2_L C2_R C3_L C3_R C5_L C5_R SCi_L SCi_R
 do
-    clinicadl predict MAPS_DIRECTORY_${crit} DATA_GROUP --caps_directory CAPS_DIRECTORY --participants_tsv TSV_FILE --no_labels --overwrite
+    clinicadl predict MAPS_DIRECTORY_${crit} DATA_GROUP --caps_directory CAPS_DIRECTORY --participants_tsv TSV_FILE --no_labels --overwrite --no-gpu
 done
 ```
 You should now see your results in the MAPS_DIRECTORY as MAPS_DIRECTORY/split-0/best-loss/DATA_GROUP/DATA_GROUP_roi_level_predictions.tsv
