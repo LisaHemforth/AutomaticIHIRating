@@ -76,7 +76,7 @@ cd /path/to/your/Matlab_runntime
 unzip MATLAB_Runtime_R2022a_Update_7_glnxa64.zip
 cd MATLAB_Runtime_R2022a_Update_7_glnxa64
 chmod 755 install
-./install
+./install -agreeToLicense=yes -destinationFolder=~/AutoRatingIHI/MATLAB/MATLAB_Runtime
 ```
 Install MATLAB in your home/MATLAB directory. You can download spm standalone at the following link (please ensure to use the 2022a version) : (https://www.fil.ion.ucl.ac.uk/spm/software/download/) . Unzip your file. You can check that spm works using the following command.
 ```
