@@ -42,7 +42,7 @@ The respository is structured as follows:
 The data for this study can unfortunately not be made accessible. However, the pre-rained models are available in the `trained_models` folder. The models were trained with clinicaDL (https://clinicadl.readthedocs.io/en/latest/Train/Introduction/). Users should hence get familiar with this training strategy. Trained models can be found in the subfolders corresponding to training_methods (`IMAGEN`, `IMAGEN_QTIM_QTAB`,`IMAGEN_QTIM_QTAB_UKB`)  and model (`CNN`, `ResNet`, `SECNN`). We advise using the "conv5-FC3" trained on the IMAGEN, QTIM and QTAB data-sets. While we cannot disclose individual results, the figures of the paper showing the summarry statistics obtained with each model can be found in the `results` folder. The scripts to predict further results can be found in the `scripts` folder along with the pre-processing pipeline. 
 
 # Usage
-## Installation of dependencies from zero (If you have SPM and MATLAB skip this part) 
+IMPORTANT: This Usage has been written for linux users. It may cause problems elsewhere.
 Fork this github directory and ensure you are connect to your own github through ssh using this tutorial : https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac
 You can now clone the repository. Another option is to simply download the zip file.
 ```
@@ -50,10 +50,7 @@ git clone git@github.com:Linktoyourgithub
 ```
 If you want to create your own environment or are not operating under linux:
 ```
-#Linux
 conda env create -n IHIRating python==3.9
-#Apple
-conda create --name IHIRating python==3.9 -c conda-forge
 ```
 Then install clinica and clinicadl:
 ```
@@ -71,6 +68,7 @@ Check that your clinicadl version is 1.1.1
 ```
 clinicadl --version
 ```
+## Installation of dependencies from zero (If you have SPM and MATLAB skip this part) 
 Clinica also requires spm. If you already have SPM standalone or SPM and matlab you can skip this step. SPM is based on MATLAB, however, a standalone version is available which only requires MATLAB runtime (download the 2022a version here and follow the installer https://fr.mathworks.com/products/compiler/matlab-runtime.html). If you are using linux: 
 ```
 cd /path/to/your/Matlab_runntime
@@ -83,10 +81,22 @@ You can, for example, install MATLAB in your home/MATLAB directory. You can down
 ```
 cd path/to/your/spm
 ./run_spm12.sh /home/MATLAB/v912
-export SPMSTANDALONE_HOME=/path/to/your/spm
+export SPMSTANDALONE_HOME=/path/to/your/spm/spm12
 export MCR_HOME=/home/MATLAB/v912
 ```
+We require a slightly different version of clinica for in this case.
+```
+cd AutomaticIHIRating/scripts/clinica
+pip install -e .
+```
+
+## If you have SPM and MATLAB 
 If your already have SPM and MATLAB set the SPM_HOME to your SPM folder.
+```
+export SPM_HOME=/path/to/your/spm
+```
+
+## Pre-processing
 You can then use the clinica T1-volume pipeline for pre-processing. Make sure that your data is in bids format. Indicate the CAPS directory where you want to store your processed data as well as a tsv file containing the column 'participant_id' and 'session_id' indicating which participants and sessions to process, as well as a column 'diagnosis' with the word 'train' on every row. This last column should not be necessary anymore in the future updates. 
 ```
 clinica run t1-volume-tissue-segmentation BIDS_DIRECTORY CAPS_DIRECTORY -tsv TSV_FILE
@@ -95,6 +105,8 @@ You then extract tensors from the greymatter maps which will be used for predict
 ```
 clinicadl extract roi CAPS_DIRECTORY custom --custom_suffix normalized_space/*graymatter_space-Ixi549Space_modulated-off_probability.nii.gz --roi_custom_template MNI152NLin2009cSym --roi_list hippvol --subjects_sessions_tsv TSV_FILE --save_features --extract_json hippGM.json  --roi_uncrop_output
 ```
+
+## Prediction 
 You can now start the predicition using our models. Download the trained_models folder and choose which model you want to apply to your data. We recommend using the Conv5-FC3 trained on IMAGEN,QTIM,QTAB. You can then launch the prediction using the following command. Criteria can either be predicted indivually or the composite score can be predicted directly. In the former case, predicted results will then need to be added together to obtain the full IHI score. The INPUT_MAPS DIRECTORY needs to be a path to the pretrained models MAPS (ex: trained_models/IMAGEN_QTIM_QTAB/Conv5-FC3/MAPS_C1_L). Define you data group name to recognise your predictions later on. 
 ```
 for crit in C1_L C1_R C2_L C2_R C3_L C3_R C5_L C5_R SCi_L SCi_R
