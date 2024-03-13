@@ -42,6 +42,7 @@ The respository is structured as follows:
 The data for this study can unfortunately not be made accessible. However, the pre-rained models are available in the `trained_models` folder. The models were trained with clinicaDL (https://clinicadl.readthedocs.io/en/latest/Train/Introduction/). Users should hence get familiar with this training strategy. Trained models can be found in the subfolders corresponding to training_methods (`IMAGEN`, `IMAGEN_QTIM_QTAB`,`IMAGEN_QTIM_QTAB_UKB`)  and model (`CNN`, `ResNet`, `SECNN`). We advise using the "conv5-FC3" trained on the IMAGEN, QTIM and QTAB data-sets. While we cannot disclose individual results, the figures of the paper showing the summarry statistics obtained with each model can be found in the `results` folder. The scripts to predict further results can be found in the `scripts` folder along with the pre-processing pipeline. 
 
 # Usage
+## Installation of dependencies from zero (If you have SPM and MATLAB skip this part) 
 Fork this github directory and ensure you are connect to your own github through ssh using this tutorial : https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac
 You can now clone the repository. Another option is to simply download the zip file.
 ```
