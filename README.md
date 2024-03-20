@@ -82,6 +82,7 @@ You can, for example, install MATLAB in your home/MATLAB directory. You can down
 cd path/to/your/spm
 ./run_spm12.sh /home/MATLAB/v912
 export SPMSTANDALONE_HOME=/path/to/your/spm/spm12
+export SPM_HOME=/path/to/your/spm/spm12
 export MCR_HOME=/home/MATLAB/v912
 ```
 We require a slightly different version of clinica for in this case.
