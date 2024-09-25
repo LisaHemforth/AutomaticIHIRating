@@ -118,7 +118,7 @@ You should now see your results in the MAPS_DIRECTORY as MAPS_DIRECTORY/split-0/
 ## Analysis 
 If you want to use the composite score, there are three ways of obtaining it. 
 - You can directly predict it using the models trained for the direct prediction of 'SCi_L' or 'SCi_R'. You can then round this prediction to the closest 0.5. This is the least interpretable method as you will not have any estimations of the individual criteria but also the fastest.
-- Individual criteria are not fully independent and can the prediction of one criterion can sometimes compensate for the lack of accuracy of another. Another method is then to add all predictions of criteria together before rounding to the composite score. This and the previous method provide similar performances, while this one gives access to the prediction of individual criteria.
+- Individual criteria are not fully independent and the prediction of one criterion can sometimes compensate for the lack of accuracy of another. Another method is then to add all predictions of criteria together before rounding to the composite score. This and the previous method provide similar performances, while this one gives access to the prediction of individual criteria.
 - The most interpretable method is to round the predictions of individual criteria to the closest 0.5 for criteria 1 to 3 and to the closest integer for C5 (between 0 and 2) before adding them together. This method provides slightly decreased performances on the prediction of the composite score compared to the two previously cited methods, however this difference was not deemed significant.
   
 # Requirements
